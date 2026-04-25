@@ -23,5 +23,24 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 1002,
+      name: '更新提示-点击取消',
+      activityIds: 'com.copymanga.app.MainActivity',
+      rules: [
+        {
+          key: 1002,
+          name: '版本更新弹窗-取消按钮',
+          snapshotUrls: 'https://i.gkd.li/i/1777108314033',
+          matches: [
+            '[desc="系統提示"]',
+            '[name="android.widget.Button"][desc="取消"][clickable=true]',
+          ],
+          action: 'click',
+          actionMaximum: 1,
+          resetMatch: 'activity',
+        },
+      ],
+    },
   ],
 });

@@ -131,6 +131,7 @@ raw.githubusercontent.com 在大陆的访问常常无法访问
 3. 查看订阅详情中的版本号是否变化（版本来自 `dist/gkd.version.json5`）。
 4. 若 raw 链接失败，切换到 jsDelivr 链接重新添加订阅。
 5. 若仍失败，通常是网络可达性问题，可改走“本地手动导入”。
+6. 本地可执行 `pnpm run verify:remote` 检查 raw/jsDelivr 的订阅与版本文件是否可访问。
 
 ## 本地规则保存位置与手动导入
 
@@ -152,6 +153,26 @@ raw.githubusercontent.com 在大陆的访问常常无法访问
 2. 将生成的 `dist/gkd.json5` 传到手机
 3. 在 GKD 中选择“本地文件导入”并选择该文件
 4. 导入后在订阅详情里确认版本号与规则是否已更新
+
+## AI 代操作模式（推荐）
+
+如果你不会 Git、也不想看规则代码，直接按下面模板发需求即可：
+
+```txt
+快照位置：snapshots/latest
+目标控件：右上角关闭按钮（示例）
+目标行为：点击（或返回/长按）
+```
+
+收到后 AI 按固定流程执行：
+
+1. 先读取 `snapshots/latest` 的截图、节点树、元信息
+2. 生成或修改 `src/apps/<package>.ts` 规则
+3. 运行 `pnpm run check`
+4. 运行 `pnpm run build`
+5. 运行 `pnpm run verify:remote`
+6. 提交并推送到云端
+7. 回传手机刷新步骤；若链接不可达，回传本地导入步骤
 
 ## 自定义配置文件
 

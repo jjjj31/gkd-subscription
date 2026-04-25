@@ -66,3 +66,5 @@ Additional project-specific guidance:
 7. 修改规则后，运行 `pnpm run check`，通过后再提交并推送变更（commit message: `chore: document local snapshot workflow`）。
 8. 用户提到“制定规则/加规则”时，默认先检查 `snapshots/latest`，不要先要求用户重复提供 appId 或 activityId。
 9. 本地规则文件位置：应用规则在 `src/apps/<package>.ts`，全局规则在 `src/globalGroups.ts`，构建产物在 `dist/gkd.json5`。
+10. 规则发布执行顺序固定为：读取 `snapshots/latest` -> 修改规则文件 -> `pnpm run check` -> `pnpm run build` -> `pnpm run verify:remote` -> 提交并推送。
+11. 只有在本地快照无法确定目标节点时，才允许询问用户补充信息；并且单次只问一个最小问题。

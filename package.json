@@ -7,7 +7,8 @@
     "format": "prettier --cache --write ./**/*.{js,cjs,mjs,ts,jsx,tsx,json}",
     "lint": "eslint --cache --fix ./**/*.{js,cjs,mjs,ts,jsx,tsx}",
     "check": "tsc --noEmit && tsx ./scripts/check.ts",
-    "build": "tsc --noEmit && tsx ./scripts/build.ts"
+    "build": "tsc --noEmit && tsx ./scripts/build.ts",
+    "verify:remote": "tsx ./scripts/verify-remote-subscription.ts"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm exec lint-staged",

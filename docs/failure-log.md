@@ -24,3 +24,29 @@ activityId：
 解决方案：
 
 最终是否解决：
+
+### 2026-04-25 - 拷貝漫畫 - 系统提示弹窗确定按钮
+
+应用：拷貝漫畫  
+包名：com.copymanga.app  
+activityId：com.copymanga.app.MainActivity  
+快照链接：https://i.gkd.li/i/1777108294304
+
+原规则：
+- `li.songe.gkd` 下曾有占位“点击确定”规则，使用了占位快照链接与泛化匹配。
+
+问题现象：
+- 规则有没有触发：手机刷新到 v3 后不再有该规则（订阅里对应分组为空）。
+- 触发记录有没有出现：无该规则触发记录。
+- 是否匹配但没点击：否。
+- 是否误触：存在潜在误触风险（占位泛化规则）。
+
+原因分析：
+- v3 为消除占位/伪造字段风险，移除了占位规则；但用户实际需要的是 `com.copymanga.app` 的真实弹窗“确定”按钮规则。
+- 订阅链接与版本正常，问题本质是“规则被移除后未用真实快照重建”。
+
+解决方案：
+- 基于本地 `snapshots/latest/snapshot.json` 实际节点创建 `src/apps/com.copymanga.app.ts`。
+- 使用快照中的真实 `appId/activityId` 与按钮特征（`android.widget.Button` + `desc="确定"` + `clickable=true`）。
+
+最终是否解决：待发布并在手机端刷新验证。

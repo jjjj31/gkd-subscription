@@ -113,6 +113,46 @@ raw.githubusercontent.com 在大陆的访问常常无法访问
 
 请自行解决网络问题
 
+## 本仓库可直接使用的订阅链接
+
+- Raw 链接: <https://raw.githubusercontent.com/jjjj31/gkd-subscription/main/dist/gkd.json5>
+- jsDelivr 链接: <https://fastly.jsdelivr.net/gh/jjjj31/gkd-subscription@main/dist/gkd.json5>
+
+> [!TIP]
+> `src/subscription.ts` 里 `checkUpdateUrl` 使用相对路径 `./gkd.version.json5`。
+> 这表示你添加订阅时使用哪个域名（raw 或 jsDelivr），后续检查更新也会走同域名。
+
+## 订阅更新失败排查
+
+如果手机提示“请求更新链接失败”，按下面顺序排查：
+
+1. 确认订阅 URL 正确（建议优先使用上面的 jsDelivr 链接）。
+2. 在 GKD 订阅页手动下拉刷新一次。
+3. 查看订阅详情中的版本号是否变化（版本来自 `dist/gkd.version.json5`）。
+4. 若 raw 链接失败，切换到 jsDelivr 链接重新添加订阅。
+5. 若仍失败，通常是网络可达性问题，可改走“本地手动导入”。
+
+## 本地规则保存位置与手动导入
+
+### 本地规则保存位置
+
+- 应用规则源码: `src/apps/<package>.ts`
+- 全局规则源码: `src/globalGroups.ts`
+- 构建后的最终订阅文件: `dist/gkd.json5`
+
+### 快照目录（制定规则时优先来源）
+
+- 本地快照目录: `snapshots/latest`
+- 用途: 从截图、节点树、元信息提取 `appId/activityId/目标节点`
+- 原则: 无法从本地快照确定节点时，再补充最少必要信息
+
+### 订阅链接不可用时的手动导入
+
+1. 在本地执行 `pnpm run build`
+2. 将生成的 `dist/gkd.json5` 传到手机
+3. 在 GKD 中选择“本地文件导入”并选择该文件
+4. 导入后在订阅详情里确认版本号与规则是否已更新
+
 ## 自定义配置文件
 
 注意: **大多数情况下, 你不需要自定义, 使用默认配置时, 下面此节教程无需了解**

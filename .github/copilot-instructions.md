@@ -64,4 +64,5 @@ Additional project-specific guidance:
 5. 只有在无法从本地快照确定目标节点时，才向用户询问补充信息，并仅请求最少量必要的信息。
 6. 严格禁止伪造或编造 `appId`、`activityId`、`text`、`id`、`vid` 或 `snapshotUrls`；规则应以实测或快照数据为依据。
 7. 修改规则后，运行 `pnpm run check`，通过后再提交并推送变更（commit message: `chore: document local snapshot workflow`）。
-
+8. 用户提到“制定规则/加规则”时，默认先检查 `snapshots/latest`，不要先要求用户重复提供 appId 或 activityId。
+9. 本地规则文件位置：应用规则在 `src/apps/<package>.ts`，全局规则在 `src/globalGroups.ts`，构建产物在 `dist/gkd.json5`。

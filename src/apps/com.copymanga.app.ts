@@ -42,5 +42,36 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 1003,
+      name: '右上角关闭按钮',
+      activityIds: 'com.copymanga.app.MainActivity',
+      rules: [
+        {
+          key: 3001,
+          name: '京东广告弹窗-右上角关闭',
+          snapshotUrls: 'https://i.gkd.li/i/1777116717249',
+          matches: [
+            '[name="android.widget.TextView"][text="京东秒杀惊喜特价！"]',
+            '[name="android.widget.FrameLayout"][width=67][height=67] > [name="android.widget.ImageView"][width=67][height=67]',
+          ],
+          action: 'click',
+          actionMaximum: 1,
+          resetMatch: 'activity',
+        },
+        {
+          key: 3002,
+          name: '微信跳转弹窗-右上角关闭',
+          snapshotUrls: 'https://i.gkd.li/i/1777108302627',
+          matches: [
+            '[name="android.widget.TextView"][text="上滑/点击了解更多内容"]',
+            '[name="android.widget.FrameLayout"][width=67][height=67] > [name="android.widget.ImageView"][width=67][height=67]',
+          ],
+          action: 'click',
+          actionMaximum: 1,
+          resetMatch: 'activity',
+        },
+      ],
+    },
   ],
 });
